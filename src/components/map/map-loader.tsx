@@ -1,0 +1,16 @@
+"use client";
+
+import dynamic from "next/dynamic";
+import type { FeatureCollection, Geometry } from "geojson";
+import { CountryProperties } from "@/types/map";
+
+const MapView = dynamic(() => import("@/app/components/map/map-view"), { ssr: false });
+
+interface MapLoaderProps {
+  countries: FeatureCollection<Geometry, CountryProperties>;
+  highlightedCountryCodes: string[];
+}
+
+export default function MapLoader({ countries, highlightedCountryCodes }: MapLoaderProps) {
+  return <MapView countries={countries} highlightedCountryCodes={highlightedCountryCodes} />;
+}
