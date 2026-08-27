@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import type { FeatureCollection, Geometry } from "geojson";
 import { CountryProperties } from "@/types/map";
 
-const MapView = dynamic(() => import("@/app/components/map/map-view"), { ssr: false });
+const MapView = dynamic(() => import("@/components/map/map-view"), { ssr: false });
 
 interface MapLoaderProps {
   countries: FeatureCollection<Geometry, CountryProperties>;
