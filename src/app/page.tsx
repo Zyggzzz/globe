@@ -1,7 +1,7 @@
 import MapLoader from "@/components/map/map-loader";
 import { getCountriesGeojson } from "@/lib/countries-api";
 
-const highlightedCountryCodes = ["IDN", "USA"];
+const highlightedCountryCodes = ["NLD"];
 
 export default async function Home() {
   const countries = await getCountriesGeojson();
