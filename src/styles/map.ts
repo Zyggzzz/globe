@@ -1,16 +1,16 @@
 import type { PathOptions } from "leaflet";
 
 const countryStyle: PathOptions = {
-  color: "#c8c8c8",
+  color: "var(--map-country-border)",
   weight: 0.7,
-  fillColor: "#ffffff",
+  fillColor: "var(--map-country)",
   fillOpacity: 1,
 };
 
 const highlightedCountryStyle: PathOptions = {
-  color: "#b00000",
+  color: "var(--map-highlighted-country-border)",
   weight: 0.9,
-  fillColor: "#ff0000",
+  fillColor: "var(--map-highlighted-country)",
   fillOpacity: 1,
 };
 

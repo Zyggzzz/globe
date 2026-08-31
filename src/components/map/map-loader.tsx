@@ -12,5 +12,9 @@ interface MapLoaderProps {
 }
 
 export default function MapLoader({ countries, highlightedCountryCodes }: MapLoaderProps) {
-  return <MapView countries={countries} highlightedCountryCodes={highlightedCountryCodes} />;
+  return (
+    <>
+      <MapView countries={countries} highlightedCountryCodes={highlightedCountryCodes} />
+    </>
+  );
 }

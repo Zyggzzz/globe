@@ -1,16 +1,11 @@
-import "server-only";
+"use server";
 
 import type { FeatureCollection, Geometry } from "geojson";
 import { CountryProperties } from "@/types/map";
-import { countriesApi } from "@/lib/countries-api";
+import { countriesApi } from "@/lib/countriesApi";
 import { db } from "..";
 
-interface CountryJson {
-  alpha3: string;
-  name: string;
-}
-
-export async function getHighlightedCountryCodes(userId: number) {
+export async function getHighlightedCountryCodes(userId: string) {
   const data = await db.query.userCountriesTable.findMany({
     where: {
       userId,

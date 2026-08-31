@@ -1,6 +1,6 @@
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
-
+import * as schema from "./schema";
 import { relations } from "@/data/relations";
 
 const globalForDb = globalThis as unknown as {
@@ -14,5 +14,5 @@ if (!dbUrl) {
 }
 
 export const conn = globalForDb.conn ?? postgres(dbUrl);
-
+export { schema };
 export const db = drizzle({ client: conn, relations });

@@ -1,8 +1,8 @@
 import { sql } from "drizzle-orm";
-import { integer, pgTable, primaryKey, timestamp, varchar } from "drizzle-orm/pg-core";
+import { integer, pgTable, primaryKey, uuid, timestamp, varchar } from "drizzle-orm/pg-core";
 
 export const usersTable = pgTable("users", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  id: uuid("user_id").primaryKey().defaultRandom(),
   name: varchar({ length: 255 }).notNull(),
   email: varchar({ length: 255 }).notNull().unique(),
   passwordHash: varchar({ length: 255 }).notNull(),
@@ -19,7 +19,7 @@ export const countriesTable = pgTable("countries", {
 export const userCountriesTable = pgTable(
   "user_countries",
   {
-    userId: integer("user_id")
+    userId: uuid("user_id")
       .notNull()
       .references(() => usersTable.id, { onDelete: "cascade" }),
 
@@ -38,7 +38,7 @@ export const userCountriesTable = pgTable(
 
 export const sessionTable = pgTable("session", {
   id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
-  userId: integer("user_id")
+  userId: uuid("user_id")
     .notNull()
     .references(() => usersTable.id, { onDelete: "cascade" }),
   tokenHash: varchar("token_hash", { length: 256 }).notNull().unique(),
@@ -53,7 +53,7 @@ export const sessionTable = pgTable("session", {
 export const pinsTable = pgTable("pins", {
   id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
 
-  userId: integer("user_id")
+  userId: uuid("user_id")
     .notNull()
     .references(() => usersTable.id, { onDelete: "cascade" }),
 
