@@ -1,8 +1,6 @@
 "use client";
 
 import type { Feature as GeoJsonFeature, Geometry } from "geojson";
-import { Moon, Sun } from "lucide-react";
-import { useTheme } from "next-themes";
 import { GeoJSON, MapContainer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { Button } from "@/components/ui/button";
@@ -14,9 +12,7 @@ import { addCountry } from "@/data/actions/countries";
 import { toast } from "../ui/toast";
 
 export default function MapView({ countries, highlightedCountryCodes }: MapViewProps) {
-  const { resolvedTheme, setTheme } = useTheme();
   const highlightedCountries = new Set(highlightedCountryCodes);
-  const isDarkTheme = resolvedTheme === "dark";
 
   const [state, action, isPending] = useActionState(addCountry, null);
 
@@ -31,7 +27,7 @@ export default function MapView({ countries, highlightedCountryCodes }: MapViewP
         title: "Country added",
         type: "success",
       });
-    } else {
+    } else if (state?.success === false) {
       toast.add({
         title: "Error adding country",
         description: state?.message,
@@ -58,17 +54,6 @@ export default function MapView({ countries, highlightedCountryCodes }: MapViewP
           <Button type="submit">Add to map</Button>
         </form>
       </div>
-
-      <Button
-        variant="outline"
-        size="icon"
-        className="absolute top-4 right-4 bg-card shadow-sm"
-        aria-label={isDarkTheme ? "Switch to light mode" : "Switch to dark mode"}
-        title={isDarkTheme ? "Switch to light mode" : "Switch to dark mode"}
-        onClick={() => setTheme(isDarkTheme ? "light" : "dark")}
-      >
-        {isDarkTheme ? <Sun aria-hidden="true" /> : <Moon aria-hidden="true" />}
-      </Button>
     </div>
   );
 }
