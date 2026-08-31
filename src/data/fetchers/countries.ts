@@ -1,9 +1,14 @@
 "use server";
 
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import type { FeatureCollection, Geometry } from "geojson";
-import { CountryProperties } from "@/types/map";
-import { countriesApi } from "@/lib/countriesApi";
+import type { CountryProperties } from "@/types/map";
 import { db } from "..";
+
+const countriesGeojson = readFile(join(process.cwd(), "src", "data", "countries.geojson"), "utf8").then(
+  (contents) => JSON.parse(contents) as FeatureCollection<Geometry, CountryProperties>,
+);
 
 export async function getHighlightedCountryCodes(userId: string) {
   const data = await db.query.userCountriesTable.findMany({
@@ -19,7 +24,5 @@ export async function getHighlightedCountryCodes(userId: string) {
 }
 
 export async function getCountriesGeojson() {
-  const response = await countriesApi.get<FeatureCollection<Geometry, CountryProperties>>("/countries.geojson");
-
-  return response.data;
+  return countriesGeojson;
 }

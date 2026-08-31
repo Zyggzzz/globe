@@ -13,6 +13,7 @@ import { toast } from "../ui/toast";
 
 export default function MapView({ countries, highlightedCountryCodes }: MapViewProps) {
   const highlightedCountries = new Set(highlightedCountryCodes);
+  console.log(highlightedCountries);
 
   const [state, action, isPending] = useActionState(addCountry, null);
 
