@@ -8,6 +8,7 @@ const countryStyle: PathOptions = {
 };
 
 const highlightedCountryStyle: PathOptions = {
+  className: "highlighted-country",
   color: "var(--map-highlighted-country-border)",
   weight: 0.9,
   fillColor: "var(--map-highlighted-country)",

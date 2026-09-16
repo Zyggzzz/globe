@@ -6,6 +6,8 @@ interface MapViewProps {
 }
 
 interface CountryProperties {
+  name: string;
+  "ISO3166-1-Alpha-2": string;
   "ISO3166-1-Alpha-3": string;
 }
 

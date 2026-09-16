@@ -142,8 +142,13 @@
 }
 
 .themed-map .leaflet-interactive {
+  cursor: default;
   transition-property: fill, stroke;
   transition-duration: 150ms;
+}
+
+.themed-map .leaflet-interactive.highlighted-country {
+  cursor: pointer;
 }
 
 .themed-map .leaflet-bar {
