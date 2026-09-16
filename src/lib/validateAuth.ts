@@ -1,7 +1,8 @@
 import { db, schema } from "@/data";
 import { eq, sql } from "drizzle-orm";
+import type { User } from "@/types/user";
 
-export async function validateAuth(token: string) {
+export async function validateAuth(token: string): Promise<User | null> {
   const tokenData = await db.query.sessionTable.findFirst({
     columns: {
       id: true,

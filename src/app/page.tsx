@@ -11,10 +11,7 @@ interface MapContentProps {
 }
 
 async function MapContent({ userId }: MapContentProps) {
-  const [countries, highlightedCountryCodes] = await Promise.all([
-    getCountriesGeojson(),
-    getHighlightedCountryCodes(userId),
-  ]);
+  const [countries, highlightedCountryCodes] = await Promise.all([getCountriesGeojson(), getHighlightedCountryCodes(userId)]);
 
   return <MapLoader countries={countries} highlightedCountryCodes={highlightedCountryCodes} />;
 }
@@ -29,7 +26,7 @@ export default async function Home() {
       </Suspense>
       <div className="absolute top-4 right-4 flex flex-row gap-2">
         <ThemeSwitcher />
-        <ProfileSettings />
+        <ProfileSettings user={user} />
       </div>
     </div>
   );
