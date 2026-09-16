@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Globe
 
-## Getting Started
+Globe is an interactive travel tracker that turns the countries you have visited into a personal world map. Search for a country, add it to your account, and it will be highlighted on the map so you can see your travels at a glance.
 
-First, run the development server:
+> [!NOTE]
+> Globe is still under active development. The current version focuses on account management and country-level travel tracking, with more detailed ways to document trips planned for future releases.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Interactive world map built with Leaflet and GeoJSON
+- Searchable country selection
+- Personal collection of visited countries
+- Country details with flags and ISO codes
+- Custom account authentication and persistent sessions
+- Light and dark themes
+- Responsive interface for desktop and mobile devices
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tech stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- [Next.js](https://nextjs.org/) and [React](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Leaflet](https://leafletjs.com/) and [React Leaflet](https://react-leaflet.js.org/)
+- [PostgreSQL](https://www.postgresql.org/) with [Drizzle ORM](https://orm.drizzle.team/)
+- [Tailwind CSS](https://tailwindcss.com/) and [Base UI](https://base-ui.com/)
+- [Bun](https://bun.sh/)
 
-## Learn More
+## Getting started
 
-To learn more about Next.js, take a look at the following resources:
+### Prerequisites
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Bun
+- A PostgreSQL database
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Installation
 
-## Deploy on Vercel
+1. Clone the repository and enter the project directory:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   git clone https://github.com/Zyggzzz/globe.git
+   cd globe
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. Install the dependencies:
+
+   ```bash
+   bun install
+   ```
+
+3. Create a `.env` file and add your PostgreSQL connection string:
+
+   ```env
+   DATABASE_URL=postgresql://user:password@localhost:5432/globe
+   ```
+
+4. Apply the database schema and seed the country data:
+
+   ```bash
+   bunx drizzle-kit push
+   bun run db:seed:countries
+   ```
+
+5. Start the development server:
+
+   ```bash
+   bun run dev
+   ```
+
+6. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Roadmap
+
+- [ ] Add pins for specific cities, landmarks, and other visited locations
+- [ ] Attach photos and videos to trips and location pins
+- [ ] Add travel dates, notes, and memories
+- [ ] Group visited locations into individual trips
+- [ ] Show personal travel statistics and map progress
+- [ ] Expand profile and account settings
+
+## Project status
+
+Globe is a work in progress, so its features and interface may change as development continues.
